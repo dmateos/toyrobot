@@ -9,11 +9,11 @@ class Robot
     @position = Position.new(0, 0, "NORTH")
   end
 
-  def place(position)
-    position = Position.new(*position.split(','))
+  def place(position_string)
+    new_position = Position.new(*position_string.split(','))
 
-    if @table.still_on_surface?(position) && position.orientation_valid?
-      @position = position
+    if @table.still_on_surface?(new_position) && new_position.orientation_valid?
+      @position = new_position
     end
   end
 
@@ -24,15 +24,15 @@ class Robot
   end
 
   def left
-    @position.turn_left
+    position.turn_left
   end
 
   def right
-    @position.turn_right
+    position.turn_right
   end
 
   def report(console = true)
-    puts @position.to_s if console && !position.to_s.nil?
-    @position.to_s
+    puts position.to_s if console && !position.to_s.nil?
+    position.to_s
   end
 end
