@@ -44,6 +44,17 @@ describe "Robot" do
     expect(string).to eq("0,0,NORTH")
   end
 
+  it "places an object ahead of it self" do
+    robot.place_object
+    expect(table.is_object_at(Position.new(0, 1))).to eq(true)
+  end
+
+  it "doesn't run into an object" do
+    robot.place_object
+    robot.move
+    expect(robot.position).to eq(Position.new(0, 0, :north))
+  end
+
   it "stops when at edge of table" do
     10.times do
       robot.move

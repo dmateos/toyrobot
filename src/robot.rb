@@ -20,7 +20,7 @@ class Robot
   def move
     pos = @position.clone
     pos.move
-    @position.move if @table.still_on_surface?(pos)
+    @position.move if @table.still_on_surface?(pos) and !@table.is_object_at(pos)
   end
 
   def left
@@ -34,5 +34,11 @@ class Robot
   def report(console = true)
     puts position.to_s if console && !position.to_s.nil?
     position.to_s
+  end
+
+  def place_object
+    new_position = @position.clone 
+    new_position.move
+    @table.add_object(new_position) if @table.still_on_surface?(new_position)
   end
 end

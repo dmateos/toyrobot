@@ -11,4 +11,10 @@ describe "Table" do
     expect(table.still_on_surface?(Position.new(5, 4, :north))).to eq(false)
     expect(table.still_on_surface?(Position.new(0, -1, :north))).to eq(false)
   end
+
+  it "can place an object" do
+    table.add_object(Position.new(3, 3))
+    expect(table.is_object_at(Position.new(3,3))).to eq(true)
+    expect(table.is_object_at(Position.new(3,2))).to eq(false)
+  end
 end
